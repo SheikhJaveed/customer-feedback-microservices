@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true # Allows finding services automatically
+          lower-case-service-id: true
+      routes:
+        # Route 1: Auth and Users -> USER-SERVICE
+        - id: user-service
+          uri: lb://USER-SERVICE  # 'lb' means Load Balancer (looks up in Eureka)
+          predicates:
+            - Path=/auth/**, /users/**
+
+        # Route 2: Feedback -> FEEDBACK-SERVICE
+        - id: feedback-service
+          uri: lb://FEEDBACK-SERVICE
+          predicates:
+            - Path=/feedback/**
+
+        # Route 3: Analytics -> ANALYTICS-SERVICE
+        - id: analytics-service
+          uri: lb://ANALYTICS-SERVICE
+          predicates:
+            - Path=/analytics/**
+
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/products/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

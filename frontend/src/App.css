@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", sans-serif; /* Optional: Define font if needed */
+}
+
+/* In v4, you can usually just use standard CSS classes on body, 
+   but if you want @apply, it works like this: */
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-800;
+    font-family: var(--font-sans);
+  }
+}

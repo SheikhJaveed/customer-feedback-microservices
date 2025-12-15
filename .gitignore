@@ -1,0 +1,27 @@
+# --- Maven / Java ---
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+logs/
+
+# --- IntelliJ IDEA ---
+.idea/
+*.iml
+*.iws
+out/
+
+# --- VS Code (if you use it) ---
+.vscode/
+
+# --- Docker & Secrets ---
+.env
+docker-compose.override.yml
+*.pem
+*.key
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
